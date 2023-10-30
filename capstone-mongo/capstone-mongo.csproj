@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>capstone_mongo</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Module\" />
+    <None Remove="Services\" />
+    <None Remove="Views\Grade\" />
+    <None Remove="Helper\" />
+    <None Remove="Views\Login\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Views\Module\" />
+    <Folder Include="Views\Grade\" />
+    <Folder Include="Helper\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.20.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.20.0" />
+    <PackageReference Include="MongoDB.Bson" Version="2.20.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Home\AccessDenied.cshtml" />
+  </ItemGroup>
+</Project>

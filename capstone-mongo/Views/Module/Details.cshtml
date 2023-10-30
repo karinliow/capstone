@@ -1,0 +1,176 @@
+﻿@model capstone_mongo.Models.Module
+
+@{
+    ViewData["Title"] = "Module Details";
+}
+
+<div>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div id="showAlert">
+    </div>
+
+    <h4>Module Details</h4>
+    <hr />
+
+    <div class="form-group row">
+        <span class="col-sm-2" style="font-weight:bold">
+            @Html.DisplayNameFor(model => model.ModuleCode)
+        </span>
+        <span class="col-sm-10">
+            @Html.DisplayFor(model => model.ModuleCode)
+        </span>
+    </div>
+    <div class="form-group row">
+        <span class="col-sm-2" style="font-weight:bold">
+            @Html.DisplayNameFor(model => model.ModuleName)
+        </span>
+        <span class="col-sm-10">
+            @Html.DisplayFor(model => model.ModuleName)
+        </span>
+    </div>
+    <div class="form-group row">
+        <span class="col-sm-2" style="font-weight:bold">
+            @Html.DisplayNameFor(model => model.AssignGroup)
+        </span>
+        <span class="col-sm-10">
+            @Html.DisplayFor(model => model.AssignGroupDisplay)
+        </span>
+    </div>
+
+    <hr style="margin-bottom: revert;" />
+    <h5 style="text-align: center; font-weight: bold;">All Assessments</h5>
+    <hr style="margin:0" />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Assessment Name</th>
+                <th>Max Score</th>
+                <th>Weightage (%)</th>
+                <th>Peer Evaluation</th>
+                <th>Peer Weightage (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var assessment in Model.Assessments)
+            {
+                <tr>
+                    <td>@assessment.AssessmentName</td>
+                    <td>@assessment.MaxScore</td>
+                    <td>@assessment.Weightage</td>
+                    <td>
+                        <input type="checkbox" @(assessment.PeerEvaluation ? "checked" : "") disabled />
+                    </td>
+                    <td>
+                        @assessment.PeerWeightage
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    @if (User.IsInRole("admin"))
+    {
+        <div class="row" style="justify-content:space-between">
+            <div class="row" style="max-width: fit-content">
+                <div style="max-width: fit-content;">
+                    <a href="@Url.Action("Index")" class="btn btn-primary">Back to List</a>
+                </div>
+                <div style="max-width: fit-content;">
+                    <a href="@Url.Action("Edit", new { id = Model.ModuleCode })"
+                       class="btn btn-primary">Edit Module</a>
+                </div>
+            </div>
+            <div class="row" style="max-width: fit-content;">
+                <button class="btn btn-danger"
+                        onclick="deleteModule('@Model.ModuleCode')">
+                    Delete Module
+                </button>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div>
+            <span class="btn btn-primary">
+                <a style="color: white; text-decoration:none;"
+                   href="@Url.Action("Edit", new { id = Model.ModuleCode })">
+                    Edit Details
+                </a>
+            </span>
+        </div>
+    }
+</div>
+
+<div id="loading-overlay">
+    <div class="overlay-content" style="text-align: center;">
+        <div class="spinner-border" role="status"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+@*<script src="~/js/site.js" asp-append-version="true"></script>*@
+<script type="text/javascript">
+    function showLoadingOverlay() {
+        $("#loading-overlay").show();
+    }
+
+    function hideLoadingOverlay() {
+        $("#loading-overlay").hide();
+    }
+
+    $(document).ready(function () {
+        // Hide the loading overlay initially
+        hideLoadingOverlay();
+
+        // Attach the loading overlay to the click event of the "View Grades" link
+        $(".dropdown-item[href='/Grade/Index']").on("click", function (e) {
+            showLoadingOverlay();
+            window.location.href = $(this).attr("href"); // Redirect manually after showing overlay
+        });
+
+        $("form").on("submit", function () {
+            showLoadingOverlay();
+        });
+
+        if ("@TempData["SuccessMessage"]" !== null) {
+            hideLoadingOverlay();
+    }
+    });
+
+    function showAlert(message, alertClass) {
+        var alertElement = $('#showAlert').text(message);
+        setTimeout(function () {
+            alertElement.remove();
+        },5000);
+    }
+
+     function deleteModule(moduleCode) {
+         if (confirm("Are you sure you want to delete this module?")) {
+
+            $.ajax({
+                url: '@Url.Action("Delete", "Module", new { moduleCode = Model.ModuleCode })',
+                type: 'POST',
+                data: { moduleCode: moduleCode },
+                success: function (response) {
+                    showAlert(response.message, 'success');
+                    window.location.href = '@Url.Action("Index", "Module")';
+                },
+                error: function (xhr) {
+                    showAlert(xhr.responseText.message, 'danger');
+                }
+            });
+        }
+    }
+
+</script>

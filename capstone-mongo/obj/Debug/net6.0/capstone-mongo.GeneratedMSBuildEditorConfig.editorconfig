@@ -1,0 +1,85 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = capstone_mongo
+build_property.RootNamespace = capstone_mongo
+build_property.ProjectDir = /Users/karin/Documents/GitHub/capstone/capstone-mongo/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/karin/Documents/GitHub/capstone/capstone-mongo
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Dashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Dashboard/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL1ByaXZhY3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Grade/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3JhZGUvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Grade/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3JhZGUvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Grade/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3JhZGUvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Grade/UploadFile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR3JhZGUvVXBsb2FkRmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Module/AddModule.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTW9kdWxlL0FkZE1vZHVsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Module/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTW9kdWxlL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Module/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTW9kdWxlL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Module/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTW9kdWxlL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/User/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9BY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/User/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/karin/Documents/GitHub/capstone/capstone-mongo/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-o08jpodblh

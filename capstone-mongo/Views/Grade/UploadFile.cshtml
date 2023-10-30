@@ -1,0 +1,91 @@
+﻿@model IEnumerable<capstone_mongo.Models.Grade>
+
+@{
+    ViewData["Title"] = "Grading System";
+}
+
+@if (TempData["message"] != null)
+{
+    <div class="form-group row @(TempData["class"] ?? "")">
+        <div class="form-group row col-sm-1">
+            <i class="@(TempData["icon"])" style="font-size: 30px;margin: auto;"></i>
+        </div>
+        <div class="form-group row col-sm-11" style="align-content:center;">
+            <strong>@Html.Raw(TempData["message"] as string)</strong>
+            @if (TempData["note"] != null)
+            {
+                <br>
+                <label>
+                    Note: @Html.Raw(@TempData["note"] as string)
+                </label>
+            }
+        </div>
+    </div>
+}
+
+<h4>
+    Upload a CSV File
+</h4>
+<hr>
+<h6>Allowed File Types: CSV only</h6>
+<h6>
+    Expected Filename: @ViewBag.ExpectedFilename
+</h6>
+<hr>
+
+<form asp-controller="Grade"
+      asp-action="UploadFile"
+      method="post"
+      enctype="multipart/form-data">
+
+    <div class="form-group row" style="text-align: center;">
+        <div class="form-group row" style="text-align-last: center;">
+            <input type="file" name="file">
+        </div>
+        <hr style="color: white;">
+        <div class="form-group-row">
+            <button id="uploadButton" class="btn btn-primary col-sm-3" type="submit">
+                Upload File
+            </button>
+        </div>
+    </div>
+</form>
+
+<div id="loading-overlay">
+    <div class="overlay-content" style="text-align: center;">
+        <div class="spinner-border" role="status"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>function showLoadingOverlay() {
+            $("#loading-overlay").show();
+        }
+
+        function hideLoadingOverlay() {
+            $("#loading-overlay").hide();
+        }
+
+        $(document).ready(function () {
+            // Attach the loading overlay to the form submission event
+            $("form").on("submit", function () {
+                showLoadingOverlay();
+                $(".loading-text").text("Processing...");
+            });
+
+            $(".dropdown-item[href='/Grade/Index']").on("click", function (e) {
+                showLoadingOverlay();
+                window.location.href = $(this).attr("href"); // Redirect manually after showing overlay
+            });
+
+            if ("@TempData["message"]" !== null) {
+                hideLoadingOverlay();
+            }
+
+
+            console.log("@TempData["class"]");
+
+        });
+    </script>
+}

@@ -1,0 +1,139 @@
+﻿@inject capstone_mongo.Services.SessionService SessionService
+@using System.Security.Claims
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+
+                <div class="form-group row">
+                    <div class="col-sm-5">
+                        <img src="~/css/SIT-logo.png" style="width: 100%;height: 80px;object-fit: contain;">
+                    </div>
+                    <div class="col-sm-7" style="align-self: center;">
+                        <span class="navbar-brand">SIT Grading System</span>
+                    </div>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Module"
+                                   asp-action='@(User.IsInRole("admin") ? "Index" : "Details")'
+                                   asp-route-id='@(User.IsInRole("admin") ? "" : SessionService.ModuleCode )'>Module</a>
+                            </li>
+
+                            @if (User.IsInRole("lecturer"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Dashboard"
+                                       asp-action="Index">Dashboard</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="gradesDropdown" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Grades
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="gradesDropdown">
+                                        <a class="dropdown-item" asp-controller="Grade" asp-action="Index">View Grades</a>
+                                        <a class="dropdown-item" asp-controller="Grade" asp-action="UploadFile">Update Grades with CSV</a>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                   style="font-weight: bold; color: #da2a1c !important;">
+                                    Welcome @User.FindFirstValue(ClaimTypes.GivenName)
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-controller="User" asp-action="Logout">Sign Out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                }
+
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <footer class="border-top footer text-muted" style="text-align: right;">
+        <div class="container">
+            &copy; 2023 - Capstone
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(document).ready(function () {
+            // Show dropdown on hover
+            $(".nav-item.dropdown").hover(
+                function () {
+                    $(this).addClass("show");
+                    $(this).find(".dropdown-menu").addClass("show");
+                },
+                function () {
+                    $(this).removeClass("show");
+                    $(this).find(".dropdown-menu").removeClass("show");
+                }
+            );
+
+            // Prevent dropdown from closing on click inside
+            $(".dropdown-menu").click(function (e) {
+                e.stopPropagation();
+            });
+
+            // Set active tab style
+            var currentUrl = window.location.pathname;
+            var currentController = '@(ViewContext.RouteData.Values["controller"] as string)';
+
+            $(".navbar-nav .nav-link").each(function () {
+                var linkUrl = $(this).attr("href");
+                var linkText = $(this).text();
+
+                if (currentUrl.includes(linkUrl)) {
+                    $(this).addClass("active");
+                }
+
+                else if (linkText.includes(currentController)) {
+                    $(this).addClass("active");
+                }
+
+            });
+        });
+    </script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

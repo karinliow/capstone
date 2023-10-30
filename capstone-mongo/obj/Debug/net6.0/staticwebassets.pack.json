@@ -1,0 +1,329 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/obj/Debug/net6.0/scopedcss/projectbundle/capstone-mongo.bundle.scp.css",
+      "PackagePath": "staticwebassets/capstone-mongo.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/.DS_Store",
+      "PackagePath": "staticwebassets/.DS_Store"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/CSC3009_Grades_07062023.csv",
+      "PackagePath": "staticwebassets/CSC3009_Grades_07062023.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/CSC3010_Grades_07062023.csv",
+      "PackagePath": "staticwebassets/CSC3010_Grades_07062023.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/CSC3010_Grades_20230711.csv",
+      "PackagePath": "staticwebassets/CSC3010_Grades_20230711.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/CSC3010_Grades_20230712.csv",
+      "PackagePath": "staticwebassets/CSC3010_Grades_20230712.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/CSC3010_Grades_20230714.csv",
+      "PackagePath": "staticwebassets/CSC3010_Grades_20230714.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/CSC3010_Grades_20230723.csv",
+      "PackagePath": "staticwebassets/CSC3010_Grades_20230723.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/CSC3010_Grades_20230724.csv",
+      "PackagePath": "staticwebassets/CSC3010_Grades_20230724.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/Grades.csv",
+      "PackagePath": "staticwebassets/Grades.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/Grades_06212023.csv",
+      "PackagePath": "staticwebassets/Grades_06212023.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/Grades_06232023.csv",
+      "PackagePath": "staticwebassets/Grades_06232023.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/Grades_06262023.csv",
+      "PackagePath": "staticwebassets/Grades_06262023.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/Grades_07032023.csv",
+      "PackagePath": "staticwebassets/Grades_07032023.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/Grades_07062023.csv",
+      "PackagePath": "staticwebassets/Grades_07062023.csv"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/css/SIT-logo.png",
+      "PackagePath": "staticwebassets/css/SIT-logo.png"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/css/site.css",
+      "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/css/styles.css",
+      "PackagePath": "staticwebassets/css/styles.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/js/site.js",
+      "PackagePath": "staticwebassets/js/site.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/LICENSE",
+      "PackagePath": "staticwebassets/lib/bootstrap"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.min.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.js.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.js.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery-validation-unobtrusive/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/LICENSE.txt"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery-validation/LICENSE.md",
+      "PackagePath": "staticwebassets/lib/jquery-validation/LICENSE.md"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery-validation/dist/additional-methods.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery-validation/dist/additional-methods.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/additional-methods.min.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery-validation/dist/jquery.validate.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "PackagePath": "staticwebassets/lib/jquery-validation/dist/jquery.validate.min.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery/LICENSE.txt",
+      "PackagePath": "staticwebassets/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery/dist/jquery.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery/dist/jquery.min.js",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.js"
+    },
+    {
+      "Id": "/Users/karin/Documents/GitHub/capstone/capstone-mongo/wwwroot/lib/jquery/dist/jquery.min.map",
+      "PackagePath": "staticwebassets/lib/jquery/dist/jquery.min.map"
+    },
+    {
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.build.capstone-mongo.props",
+      "PackagePath": "build\\capstone-mongo.props"
+    },
+    {
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.capstone-mongo.props",
+      "PackagePath": "buildMultiTargeting\\capstone-mongo.props"
+    },
+    {
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.capstone-mongo.props",
+      "PackagePath": "buildTransitive\\capstone-mongo.props"
+    },
+    {
+      "Id": "obj/Debug/net6.0/staticwebassets/msbuild.capstone-mongo.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

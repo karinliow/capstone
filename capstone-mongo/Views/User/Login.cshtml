@@ -1,0 +1,66 @@
+﻿@model capstone_mongo.Models.User
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h4>Sign In</h4>
+<hr />
+
+@using (Html.BeginForm("Login", "User", FormMethod.Post))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserId)
+        @Html.TextBoxFor(model => model.UserId, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password)
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    </div>
+    <br />
+    <div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+}
+
+<div id="loading-overlay">
+    <div class="overlay-content" style="text-align: center;">
+        <div class="spinner-border" role="status"></div>
+        <div class="loading-text">Signing in...</div>
+    </div>
+</div>
+@{
+    var redirected = TempData["redirected"] as bool? ?? false;
+}
+@section Scripts {
+    <script>function showLoadingOverlay() {
+            $("#loading-overlay").show();
+        }
+
+        function hideLoadingOverlay() {
+            $("#loading-overlay").hide();
+        }
+
+        $(document).ready(function () {
+            hideLoadingOverlay();
+
+            // Attach the loading overlay to the form submission event
+            $("form").on("submit", function () {
+                showLoadingOverlay();
+            });
+
+            // Check if the page has been redirected successfully
+            var redirected = @redirected;
+
+            if (redirected === true) {
+                hideLoadingOverlay();
+            }
+        });
+
+    </script>
+}

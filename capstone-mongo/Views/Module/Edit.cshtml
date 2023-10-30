@@ -1,0 +1,507 @@
+﻿@model capstone_mongo.Models.Module
+
+@{
+    ViewData["Title"] = "Edit Module Details";
+}
+
+<h4>Module Details</h4>
+<hr />
+
+@using (Html.BeginForm("Edit", "Module", FormMethod.Post))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <div class="form-group row">
+        <span class="col-sm-2" style="font-weight:bold">
+            @Html.DisplayNameFor(model => model.ModuleCode)
+        </span>
+        <span class="col-sm-10">
+            @Html.DisplayFor(model => model.ModuleCode)
+        </span>
+    </div>
+    <div class="form-group row">
+        <span class="col-sm-2" style="font-weight:bold">
+            @Html.DisplayNameFor(model => model.ModuleName)
+        </span>
+        @if (User.IsInRole("admin"))
+        {
+            <span class="col-sm-10">
+                @Html.TextBoxFor(model => model.ModuleName, new { @class = "form-control" })
+            </span>
+        }
+        else
+        {
+            <span class="col-sm-10">
+                @Html.DisplayFor(model => model.ModuleName)
+            </span>
+        }
+    </div>
+    <div class="form-group row">
+        <span class="col-sm-2" style="font-weight:bold">
+            @Html.DisplayNameFor(model => model.AssignGroup)
+        </span>
+        <span class="col-sm-10">
+            @Html.CheckBoxFor(model => model.AssignGroup)
+        </span>
+    </div>
+
+    <hr />
+    <h4>Edit Assessments</h4>
+    <hr />
+
+    <table class="table" id="assessmentsTable">
+        <thead>
+            <tr>
+                <th>Assessment Name</th>
+                <th>Max Score</th>
+                <th>Weightage</th>
+                <th>Peer Evaluation</th>
+                <th>Peer Weightage</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Assessments.Count; i++)
+            {
+                <tr>
+                    @Html.HiddenFor(m => m.Assessments[i].Index)
+
+                    <td>
+                        @Html.TextBoxFor(m => Model.Assessments[i].AssessmentName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => Model.Assessments[i].AssessmentName)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => Model.Assessments[i].MaxScore, new
+                        {
+                           @id = "max-score",
+                           @class = "form-control",
+                           @value = 0
+                        })
+                        @Html.ValidationMessageFor(m => Model.Assessments[i].MaxScore)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => Model.Assessments[i].Weightage, new
+                        {
+                           @id = "weightage",
+                           @class = "form-control",
+                           @value = 0
+                        })
+                        @Html.ValidationMessageFor(m => Model.Assessments[i].Weightage)
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(m => Model.Assessments[i].PeerEvaluation, new
+                        {
+                           @class = "peer-evaluation-checkbox",
+                           data_target = $"#peerWeightage_{i}"
+                        })
+                        @Html.HiddenFor(m => Model.Assessments[i].PeerEvaluation, new { @class = "peer-evaluation-value" })
+
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => Model.Assessments[i].PeerWeightage, new
+                   {
+                       @class = "form-control peer-weightage",
+                       @id = $"peerWeightage_{i}"
+                   })
+                        @Html.ValidationMessageFor(m => Model.Assessments[i].PeerWeightage)
+                    </td>
+
+
+                    <td>
+                        @*@if (i == Model.Assessments.Count - 1)
+                            {*@
+                        <button type="button" id="btnAdd" class="btn btn-primary add-row-btn">+</button>
+                        <button type="button" id="btnDel" class="btn btn-danger delete-row-btn">-</button>
+
+                        @*<button type="button" id="btnAdd" class="btn btn-primary add-row-btn">+</button>
+                            <button type="button" id="btnDel" class="btn btn-danger delete-row-btn" disabled>-</button>*@
+
+                        @*}*@
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="form-group row" style="text-align:center;">
+        <span>
+            <strong>Total Weightage: </strong>
+            <span id="totalWeightage">0</span>
+        </span>
+        <label id="weightageMsg"></label>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <a id="back" class="btn btn-primary"
+               href="@Url.Action("Index")">Back to List</a>
+        </div>
+        <div class="col-sm-2" style="text-align:right">
+            <button id="submit" type="submit" class="btn btn-success">Save Changes</button>
+        </div>
+    </div>
+}
+<div id="loading-overlay">
+    <div class="overlay-content" style="text-align: center;">
+        <div class="spinner-border" role="status"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to go back? Any unsaved changes will be lost.
+            </div>
+            <div class="modal-footer">
+                <span id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</span>
+                <a id="confirm" class="btn btn-primary" href="#">Go Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    var redirected = TempData["redirected"] as bool? ?? false;
+}
+@*@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script type="text/javascript">$(document).ready(function () {
+            // Handle change event for peer evaluation checkboxes
+            $(document).on("change", '.peer-evaluation-checkbox', function () {
+                var target = $(this).data('target');
+                var textbox = $(this).closest("tr").find(target);
+                var valueField = $(this).siblings('.peer-evaluation-value');
+                var isChecked = $(this).is(':checked');
+
+                textbox.prop('readonly', !isChecked);
+                textbox.toggleClass('disabled', !isChecked);
+                valueField.val(isChecked);
+
+            });
+
+            var rows = $('#assessmentsTable tbody tr').length;
+            console.log(rows);
+
+
+            // Handle click event for add row button
+            $(document).on('click', '.add-row-btn', function () {
+                var tableBody = $('#assessmentsTable tbody');
+                var lastRow = tableBody.find('tr:last');
+                var newRow = lastRow.clone();
+
+                newRow.find('input[type="text"]').val('');
+                newRow.find('input[type="checkbox"]').prop('checked', false);
+                newRow.find('#max-score').val(0);
+                newRow.find('#weightage').val(0);
+                newRow.find('.peer-weightage').val(0);
+                newRow.find('.peer-weightage').prop('readonly', true);
+
+                newRow.find('input[type="text"]').each(function () {
+                    var currentIndex = $(this).attr('name').match(/\d+/)[0];
+                    var newIndex = parseInt(currentIndex) + 1;
+                    $(this).attr('name', $(this).attr('name').replace(currentIndex, newIndex));
+                });
+
+                if (rows === 1) {
+                    lastRow.find("#btnAdd").hide();
+                    lastRow.find("#btnDel").removeAttr('disabled');
+                }
+
+                lastRow.find("#btnAdd").hide();
+                lastRow.find("#btnDel").removeAttr('disabled');
+                newRow.find("#btnDel").removeAttr("disabled");
+
+
+                tableBody.append(newRow);
+                rows++;
+                console.log(rows);
+
+            });
+
+            $(document).on('click', '.delete-row-btn', function () {
+                $(this).closest('tr').remove();
+
+                rows--;
+
+                if (rows === 1) {
+                    $('#assessmentsTable tbody tr:last').find("#btnAdd").show();
+                    $('#assessmentsTable tbody tr:last').find("#btnDel").attr('disabled', 'disabled');
+                }
+
+                $('#assessmentsTable tbody tr:last').find("#btnAdd").show();
+
+                console.log(rows);
+            });
+        });
+        // calculate total weightage as user enters a value for weightage
+        $(document).ready(function () {
+            function updateTotalWeightage() {
+                let totalWeightage = 0;
+                $("[id^='weightage']").each(function () {
+                    const value = parseFloat($(this).val());
+                    if (!isNaN(value)) {
+                        totalWeightage += value;
+                    }
+                });
+
+                $("#totalWeightage").text(totalWeightage.toFixed(2));
+
+                // for when total weightage of all assessments > 100
+                if (totalWeightage > 100) {
+                    $("#totalWeightage").css("color", "red");
+                    $("#weightageMsg").text("Note: Total Weightage cannot exceed 100%.");
+                    $("#submit").prop("disabled", true);
+
+                // for when total weightage of all assessments < 100
+                } else if (totalWeightage < 100) {
+                    $("#totalWeightage").css("color", "");
+                    $("#weightageMsg").text("Note: Total Weightage must be equal to 100%.");
+                    $("#submit").prop("disabled", true);
+
+                // for when total weightage of all assessments = 100
+                } else {
+                    $("#totalWeightage").css("color", "");
+                    $("#weightageMsg").text("Note: Total Weightage of 100% is fulfilled.");
+                    $("#submit").prop("disabled", false);
+                }
+            }
+
+            $(document).on("input", "[id^='weightage']", function () {
+                updateTotalWeightage();
+            });
+
+            // for initial calculation
+            updateTotalWeightage();
+        });
+
+        // prevent user from entering values that are non-integers or decimal point(.)
+        $(document).on("keypress", "[id^='max-score'], [id^='weightage'], [id^='peerWeightage']", function (event) {
+            const inputValue = event.key;
+            const regex = /^[0-9]*\.?[0-9]*$/;
+
+            if (!regex.test(inputValue)) {
+                event.preventDefault();
+            }
+        });
+
+        $(document).ready(function () {
+        // Handle the "Back to List" link click event
+            $('#back').click(function (e) {
+                e.preventDefault(); // Prevent the default behavior of the link
+
+                // Show the confirmation modal
+                $('#confirmationModal').modal('show');
+
+                // Attach an event listener to the "Go Back" button in the modal
+                $('#confirm').click(function () {
+                    // Redirect to the desired page (the "Index" page in this case)
+                    window.location.href = '@Url.Action("Index")';
+                });
+            });
+
+            $('#cancel').click(function () {
+                // Hide the modal
+                $('#confirmationModal').modal('hide');
+            });
+        });
+
+    </script>*@
+
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        // Disable or enable PeerWeightage input based on PeerEvaluation checkbox status
+        function updatePeerWeightageState() {
+            $('.peer-evaluation-checkbox').each(function () {
+                var target = $(this).data('target');
+                var textbox = $(this).closest("tr").find(target);
+                var isChecked = $(this).is(':checked');
+
+                textbox.prop('readonly', !isChecked);
+                textbox.toggleClass('disabled', !isChecked);
+            });
+        }
+
+        // Attach event listener to PeerEvaluation checkboxes
+        $(document).on("change", '.peer-evaluation-checkbox', function () {
+            updatePeerWeightageState();
+        });
+
+        $(document).ready(function () {
+            // Calculate total weightage as user enters a value for weightage
+            function updateTotalWeightage() {
+                let totalWeightage = 0;
+                $("[id^='weightage']").each(function () {
+                    const value = parseFloat($(this).val());
+                    if (!isNaN(value)) {
+                        totalWeightage += value;
+                    }
+                });
+
+                $("#totalWeightage").text(totalWeightage.toFixed(2));
+
+                // for when total weightage of all assessments > 100
+                if (totalWeightage > 100) {
+                    $("#totalWeightage").css("color", "red");
+                    $("#weightageMsg").text("Note: Total Weightage cannot exceed 100%.");
+                    $("#submit").prop("disabled", true);
+
+                // for when total weightage of all assessments < 100
+                } else if (totalWeightage < 100) {
+                    $("#totalWeightage").css("color", "");
+                    $("#weightageMsg").text("Note: Total Weightage must be equal to 100%.");
+                    $("#submit").prop("disabled", true);
+
+                // for when total weightage of all assessments = 100
+                } else {
+                    $("#totalWeightage").css("color", "");
+                    $("#weightageMsg").text("Note: Total Weightage of 100% is fulfilled.");
+                    $("#submit").prop("disabled", false);
+                }
+            }
+
+            // Attach input event listener to weightage inputs
+            $(document).on("input", "[id^='weightage']", function () {
+                updateTotalWeightage();
+            });
+
+            // Initialize PeerWeightage state
+            updatePeerWeightageState();
+
+            // Trigger initial calculation when the page loads
+            updateTotalWeightage();
+
+            // Determine if there are existing rows in the Assessments table
+            var rows = $('#assessmentsTable tbody tr').length;
+            if (rows > 0) {
+                // Show both "Add" and "Delete" buttons for the last row
+                $('#assessmentsTable tbody tr:last').find("#btnAdd").show();
+                $('#assessmentsTable tbody tr:last').find("#btnDel").show();
+            }
+
+            // Handle click event for add row button
+            $(document).on('click', '.add-row-btn', function () {
+                var tableBody = $('#assessmentsTable tbody');
+                var lastRow = tableBody.find('tr:last');
+                var newRow = lastRow.clone();
+
+                newRow.find('input[type="text"]').val('');
+                newRow.find('input[type="checkbox"]').prop('checked', false);
+                newRow.find('#max-score').val(0);
+                newRow.find('#weightage').val(0);
+                newRow.find('.peer-weightage').val(0);
+                newRow.find('.peer-weightage').prop('readonly', true);
+
+                newRow.find('input[type="text"]').each(function () {
+                    var currentIndex = $(this).attr('name').match(/\d+/)[0];
+                    var newIndex = parseInt(currentIndex) + 1;
+                    $(this).attr('name', $(this).attr('name').replace(currentIndex, newIndex));
+                });
+
+                // Show both "Add" and "Delete" buttons for the new row
+                newRow.find("#btnAdd").show();
+                newRow.find("#btnDel").show();
+
+                // Enable the "Delete" button for the new row
+                newRow.find("#btnDel").removeAttr("disabled");
+
+                tableBody.append(newRow);
+                updateTotalWeightage();
+            });
+
+            // Handle click event for delete row button
+            $(document).on('click', '.delete-row-btn', function () {
+                $(this).closest('tr').remove();
+                updateTotalWeightage();
+
+                // Determine the remaining number of rows in the Assessments table
+                rows = $('#assessmentsTable tbody tr').length;
+
+                if (rows === 1) {
+                    // Hide the "Delete" button for the last remaining row
+                    $('#assessmentsTable tbody tr:last').find("#btnDel").prop("disabled", true);
+
+                    // Show the "Add" button for the last remaining row
+                    $('#assessmentsTable tbody tr:last').find("#btnAdd").show();
+                } else {
+                    // Show both "Add" and "Delete" buttons for all other rows
+                    $('#assessmentsTable tbody tr').find("#btnAdd").show();
+                    $('#assessmentsTable tbody tr').find("#btnDel").show();
+                }
+            });
+        });
+
+        
+        // prevent user from entering values that are non-integers or decimal point(.)
+        $(document).on("keypress", "[id^='max-score'], [id^='weightage'], [id^='peerWeightage']", function (event) {
+            const inputValue = event.key;
+            const regex = /^[0-9]*\.?[0-9]*$/;
+
+            if (!regex.test(inputValue)) {
+                event.preventDefault();
+            }
+        });
+
+        // Handle the "Back to List" link click event
+        $(document).ready(function () {
+            $('#back').click(function (e) {
+                e.preventDefault(); // Prevent the default behavior of the link
+
+                // Show the confirmation modal
+                $('#confirmationModal').modal('show');
+
+                // Attach an event listener to the "Go Back" button in the modal
+                $('#confirm').click(function () {
+                    // Redirect to the desired page (the "Index" page in this case)
+                    window.location.href = '@Url.Action("Index")';
+                });
+            });
+
+            $('#cancel').click(function () {
+                // Hide the modal
+                $('#confirmationModal').modal('hide');
+            });
+        });
+    </script>
+
+
+<script>
+        function showLoadingOverlay() {
+            $("#loading-overlay").show();
+        }
+
+        function hideLoadingOverlay() {
+            $("#loading-overlay").hide();
+        }
+
+        $(document).ready(function () {
+            hideLoadingOverlay();
+
+            // Attach the loading overlay to the form submission event
+            $("form").on("submit", function () {
+                showLoadingOverlay();
+            });
+
+            // Check if the page has been redirected successfully
+            var redirected = @redirected;
+
+            if (redirected === true) {
+                hideLoadingOverlay();
+            }
+        });
+
+</script>
+
+
+
+
+}

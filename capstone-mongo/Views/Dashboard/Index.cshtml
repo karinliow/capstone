@@ -1,0 +1,301 @@
+﻿@model capstone_mongo.Models.Chart
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h4>Visualisations</h4>
+    <hr />
+
+    @*<div class="form-group row">
+
+            <div id="meanChartSection" class="col-sm-6">
+                <h4>Mean</h4>
+                <canvas id="meanChart" width="400" height="200"></canvas>
+            </div>
+
+            <div id="medianChartSection" class="col-sm-6">
+                <h4>Median</h4>
+                <canvas id="medianChart" width="400" height="200"></canvas>
+            </div>
+            <div id="modeChartSection" class="col-sm-6">
+                <h4>Mode</h4>
+                <canvas id="modeChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+    <br />*@
+    <div class="form-group row">
+        <div id="combiChartSection" class="col-sm-6">
+            <h4>Mean, Median & Mode</h4>
+            <canvas id="combiChart" width="400" height="200"></canvas>
+        </div>
+
+        <div id="maxMinSection" class="col-sm-6">
+            <h4>Max & Min</h4>
+            <canvas id="maxMinChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <div id="stdDeviationChartSection" class="col-sm-6">
+            <h4>Standard Deviation</h4>
+            <canvas id="stdDeviationChart" width="400" height="200"></canvas>
+        </div>
+        <div id="bellCurveChartSection" class="col-sm-6">
+            <h4>Standard Deviation (Overall Score)</h4>
+            <canvas id="bellCurveChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script>
+
+    // assignment labels
+    var assignments = @Html.Raw(Json.Serialize(Model.Assignments));
+
+    // mean for each assignment
+    var meanData = @Html.Raw(Json.Serialize(Model.MeanData));
+    var meanValues = meanData.map(item => item.mean);
+
+    // median for each assignment
+    var medianData = @Html.Raw(Json.Serialize(Model.MedianData));
+    var medianValues = medianData.map(item => item.median);
+
+    // mode graph for each assignment
+    var modeData = @Html.Raw(Json.Serialize(Model.ModeData));
+    var modeValues = modeData.map(item => item.mode);
+
+    var combiChartCtx = document.getElementById("combiChart").getContext("2d");
+    new Chart(combiChartCtx, {
+        type: "bar",
+        data: {
+            labels: assignments,
+            datasets: [
+                {
+                    label: "Mean",
+                    data: meanValues,
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1
+                },
+                {
+                    label: "Median",
+                    data: medianValues,
+                    backgroundColor: "rgba(153, 102, 255, 0.2)",
+                    borderColor: "rgba(153, 102, 255, 1)",
+                    borderWidth: 1
+                },
+                {
+                    label: "Mode",
+                    data: modeValues,
+                    backgroundColor: "rgba(255, 206, 86, 0.2)",
+                    borderColor: "rgba(255, 206, 86, 1)",
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // minimum and maximum graph for each assignment
+    var minData = @Html.Raw(Json.Serialize(Model.MinData));
+    var maxData = @Html.Raw(Json.Serialize(Model.MaxData));
+
+    var minValues = minData.map(item => item.min);
+    var maxValues = maxData.map(item => item.max);
+
+    var maxMinChartCtx = document.getElementById("maxMinChart").getContext("2d");
+    new Chart(maxMinChartCtx, {
+        type: "bar",
+        data: {
+            labels: assignments,
+            datasets: [
+                {
+                    label: "Max",
+                    data: maxValues,
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1
+                },
+                {
+                    label: "Min",
+                    data: minValues,
+                    backgroundColor: "rgba(153, 102, 255, 0.2)",
+                    borderColor: "rgba(153, 102, 255, 1)",
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // standard deviation for each assignment
+    var stdDeviationData = @Html.Raw(Json.Serialize(Model.StandardDeviationData));
+    var stdDeviationValues = stdDeviationData.map(item => item.standardDeviation);
+
+    var stdDeviationChartCtx = document.getElementById("stdDeviationChart").getContext("2d");
+    new Chart(stdDeviationChartCtx, {
+        type: "bar",
+        data: {
+            labels: assignments,
+            datasets: [
+                {
+                    label: "Standard Deviation",
+                    data: stdDeviationValues,
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    //  standard deviation for based on overall grades for all students
+    var bellCurveChartCtx = document.getElementById("bellCurveChart").getContext("2d");
+
+    // Retrieve the bell curve data from the model
+    var bellCurveXValues = @Html.Raw(Json.Serialize(Model.BellCurveXValues));
+    var bellCurveYValues = @Html.Raw(Json.Serialize(Model.BellCurveYValues));
+
+    // Create the bell curve chart
+    new Chart(bellCurveChartCtx, {
+        type: "line",
+        data: {
+            labels: bellCurveXValues,
+            datasets: [
+                {
+                    label: "Bell Curve",
+                    data: bellCurveYValues,
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 1,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    console.log(assignments);
+    console.log(meanData);
+    console.log(medianData);
+    console.log(modeData);
+    console.log(stdDeviationData);
+    console.log(maxData);
+    console.log(minData);
+
+    console.log(assignmentLabels);
+
+    console.log(meanValues);
+    console.log(medianValues);
+    console.log(modeValues);
+    console.log(stdDeviationValues);
+    console.log(maxValues);
+    console.log(minValues);
+
+</script>
+
+@*var meanChartCtx = document.getElementById("meanChart").getContext("2d");
+    new Chart(meanChartCtx, {
+        type: "bar",
+        data: {
+            labels: assignments,
+            datasets: [
+                {
+                    label: "Mean",
+                    data: meanValues,
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var medianChartCtx = document.getElementById("medianChart").getContext("2d");
+    new Chart(medianChartCtx, {
+        type: "bar",
+        data: {
+            labels: assignments,
+            datasets: [
+                {
+                    label: "Median",
+                    data: medianValues,
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+    var modeChartCtx = document.getElementById("modeChart").getContext("2d");
+    new Chart(modeChartCtx, {
+        type: "bar",
+        data: {
+            labels: assignments,
+            datasets: [
+                {
+                    label: "Mode",
+                    data: modeValues,
+                    backgroundColor: "rgba(255, 206, 86, 0.2)",
+                    borderColor: "rgba(255, 206, 86, 1)",
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });*@

@@ -1,0 +1,129 @@
+﻿@model IEnumerable<capstone_mongo.Models.Grade>
+
+@{
+    ViewData["Title"] = "Grades";
+}
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<html>
+<body>
+    <div class="form-group row">
+        <span class="col-sm-10 row" style="align-content: center;">
+            <h4 style="margin:0;">Students' Grades</h4>
+        </span>
+        <span class="col-sm-2 row">
+            <button class="btn btn-primary" id="exportBtn">Export to CSV</button>
+        </span>
+    </div>
+    <hr style="margin-block-end: auto;">
+
+    <div class="form-group">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by Student ID">
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+
+                @foreach (var item in Model)
+                {
+                    foreach (var a in item.AssessmentScores)
+                    {
+                        <th>
+                            @a.Key
+                        </th>
+                    }
+                    break;
+                }
+                <th>
+                    @Html.DisplayNameFor(model => model.FinalScore)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Id
+                    </td>
+                    @foreach (var a in item.AssessmentScores)
+                    {
+                        <td>
+                            @a.Value
+                        </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FinalScore)
+                    </td>
+                    <td>
+                        <span>@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |</span>
+                        <span>@Html.ActionLink("Details", "Details", new { id = item.Id }) </span>
+
+                        @if (User.IsInRole("admin"))
+                        {
+                            <span>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</span>
+
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <script type="text/javascript">
+        // declare button
+        var exportBtn = $("#exportBtn");
+
+        // triggers button click action
+        $(document).ready(function () {
+            exportBtn.click(function () {
+                alert("Exporting to CSV...");
+                $.ajax({
+                    url: "@Url.Action("ExportToCsv", "Grade")",
+                    success: function () {
+                        alert("Exported Successfully");
+                    }
+                });
+            });
+        });
+
+        function filterTableRows() {
+            var input, filter, table, tr, td, i, j, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.querySelector("table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) {
+                var found = false;
+                td = tr[i].getElementsByTagName("td");
+                for (j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+                }
+                tr[i].style.display = found ? "" : "none";
+            }
+        }
+
+        // Attach event listener to the search input field
+        $(document).ready(function () {
+            $("#searchInput").on("keyup", function () {
+                filterTableRows();
+            });
+        });
+    </script>
+
+</body>
+</html>
